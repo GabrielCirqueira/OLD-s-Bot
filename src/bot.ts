@@ -2,12 +2,15 @@ import { create } from 'venom-bot'
 import messageHandler from '@handlers/messageHandler'
 import { startReminder } from '@scheduler/reminder'
 
-create({
-  session: 'botzap',
-  multidevice: true,
-  headless: true,
-  browserArgs: ['--headless=new']
-})
+create(
+  'botzap',
+  undefined,
+  undefined,
+  {
+    headless: 'new',
+    browserArgs: ['--headless=new']
+  }
+)
   .then((client) => {
     startReminder(client)
     client.onMessage((message) => {
